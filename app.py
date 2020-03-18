@@ -1,5 +1,6 @@
 #coding=utf-8
 import os
+from datetime import datetime
 from flask import Flask, render_template, session, redirect, \
 				  url_for, flash, current_app, request
 from flask_script import Manager, Shell
@@ -21,7 +22,7 @@ Config
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 def make_shell_context():
-	return dict(app=app, db=db, User=User, Role=Role)
+	return dict(app=app, db=db, Device=Device, Role=Role)
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] =\
@@ -50,7 +51,8 @@ class Role(db.Model):
 	__tablename__ = 'roles'
 	id = db.Column(db.Integer, unique=True)
 	name = db.Column(db.String(64), primary_key=True)
-	users = db.relationship('User', backref='role', lazy='dynamic')
+	users = db.relationship('Device', backref='role', lazy='dynamic')
+	password = db.Column(db.String(128), default=123456)
 
 	@staticmethod
 	def insert_roles():
@@ -66,64 +68,66 @@ class Role(db.Model):
 	def __repr__(self):
 		return '<Role %r>' %self.name
 
-class User(UserMixin, db.Model):
-	__tablename__ = 'users'
-	id = db.Column(db.Integer, primary_key=True)
-	number = db.Column(db.SmallInteger, unique=True, index=True)
-	username = db.Column(db.String(64), index=True)
-	password = db.Column(db.String(128), default=123456)
-	role_name = db.Column(db.Integer, db.ForeignKey('roles.id'))
-	
-	def __init__(self, **kwargs):
-		super(User, self).__init__(**kwargs)
-		#新添加的用户，初始其角色为学生。
-		if self.role is None:
-			self.role = Role.query.filter_by(name='Student').first()
-
-	def __repr__(self):
-		return '<User %r>' %self.username
-
 	#初次运行程序时生成初始管理员的静态方法
 	@staticmethod
 	def generate_admin():
 		admin = Role.query.filter_by(name='Admin').first()
-		u = User.query.filter_by(role=admin).first()
+		u = Device.query.filter_by(role=admin).first()
 		if u is None:
-			u = User(number = 000000, username = 'Admin',\
+			u = Device(number = 000000, username = 'Admin',\
 					 password = current_app.config['AdminPassword'],\
 					 role = Role.query.filter_by(name='Admin').first())
 			db.session.add(u)
 		db.session.commit()
 
+
+class Device(UserMixin, db.Model):
+	__tablename__ = 'devices'
+	id = db.Column(db.Integer, primary_key=True)
+	lab = db.Column(db.String(64), unique=True, index=True)
+	name = db.Column(db.String(64), index=True)
+	time = db.Column(db.DateTime, default=datetime.utcnow)
+	role_name = db.Column(db.String(64), db.ForeignKey('roles.name'))
+
+	def __init__(self, **kwargs):
+		super(Device, self).__init__(**kwargs)
+		#新添加的实验设备，初始其购置人为学生。
+		if self.role is None:
+			self.role = Role.query.filter_by(name='Student').first()
+
+	def __repr__(self):
+		return '<Device %r>' %self.name
+
 	def verify_password(self, password):
-		return self.password == password
+		return self.time == password
+
 
 
 '''
 Forms
 '''
 class LoginForm(FlaskForm):
-	number = StringField(u'考号', validators=[Required()])
+	number = StringField(u'账号', validators=[Required()])
 	password = PasswordField(u'密码', validators=[Required()])
 	remember_me = BooleanField(u'记住我')
 	submit = SubmitField(u'登录')
 
 
 class SearchForm(FlaskForm):
-	number = IntegerField(u'考号', validators=[Required(message=u'请输入数字')])
+	id = IntegerField(u'设备号', validators=[Required(message=u'请输入数字')])
 	submit = SubmitField(u'搜索')
 
 
-class UserForm(FlaskForm):
-	username = StringField(u'姓名', validators=[Required()])
-	number = IntegerField(u'考号', validators=[Required(message=u'请输入数字')])
+class DeviceForm(FlaskForm):
+	name = StringField(u'设备名', validators=[Required()])
+	id = IntegerField(u'设备编号', validators=[Required(message=u'请输入数字')])
 	submit = SubmitField(u'添加')
 
 	def validate_number(self, field):
-		if User.query.filter_by(number=field.data).first():
-			raise ValidationError(u'此学生已存在，请检查考号！')
+		if Device.query.filter_by(number=field.data).first():
+			raise ValidationError(u'此设备已存在，请检查考号！')
 
-
+'''
 class EditForm(FlaskForm):
 	username = StringField(u'姓名', validators=[Required()])
 	number = IntegerField(u'考号', validators=[Required(message=u'请输入数字')])
@@ -141,9 +145,9 @@ class EditForm(FlaskForm):
 
 	def validate_number(self, field):
 		if field.data != self.user.number and \
-				User.query.filter_by(number=field.data).first():
+				Device.query.filter_by(number=field.data).first():
 			raise ValidationError(u'此学生已存在，请检查考号！')
-
+'''
 
 '''
 views
@@ -154,46 +158,46 @@ def index():
 	form = SearchForm()
 	admin = Role.query.filter_by(name='Admin').first()
 	if form.validate_on_submit():
-		#获得学生列表，其学号包含form中的数字
-		students = User.query.filter(User.number.like \
-								('%{}%'.format(form.number.data))).all()
+		#获得设备列表，其id包含form中的数字
+		devices = Device.query.filter(Device.lab.like \
+								('%{}%'.format(form.id.data))).all()
 	else:
-		students = User.query.order_by(User.role_id.desc(), User.number.asc()).all()
-	return render_template('index.html', form=form, students=students, admin=admin)
+		devices = Device.query.order_by(Device.role_name.desc(), Device.lab.asc()).all()
+	return render_template('index.html', form=form, devices=devices, admin=admin)
 
 
-#增加新考生
+#增加新设备
 @app.route('/add-user', methods=['GET', 'POST'])
 @login_required
-def add_user():
-	form = UserForm()
+def add_device():
+	form = DeviceForm()
 	if form.validate_on_submit():
-		user = User(username=form.username.data,
-					number=form.number.data)
+		user = Device(name=form.name.data,
+					  id=form.id.data)
 		db.session.add(user)
-		flash(u'成功添加考生')
+		flash(u'成功添加设备')
 		return redirect(url_for('index'))
 	return render_template('add_user.html', form=form)
 
 
-#删除考生
+#移除设备
 @app.route('/remove-user/<int:id>', methods=['GET', 'POST'])
 @login_required
-def remove_user(id):
-	user = User.query.get_or_404(id)
-	if user.role == Role.query.filter_by(name='Admin').first():
-		flash(u'不能删除管理员')
+def remove_device(id):
+	device = Device.query.get_or_404(id)
+	if device.role == Role.query.filter_by(name='Admin').first():
+		flash(u'不能删除管理员添加的设备')
 	else:
-		db.session.delete(user)
-		flash(u'成功删除此考生')
+		db.session.delete(device)
+		flash(u'成功删除此设备')
 	return redirect(url_for('index'))
 
-
+'''
 #修改考生资料
 @app.route('/edit-user/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit_user(id):
-	user = User.query.get_or_404(id)
+	user = Device.query.get_or_404(id)
 	form = EditForm(user=user)
 	if form.validate_on_submit():
 		user.username = form.username.data
@@ -208,14 +212,14 @@ def edit_user(id):
 	form.password.data = user.password
 	form.role.data = user.role_id
 	return render_template('edit_user.html', form=form, user=user)
-
+'''
 
 #登录，系统只允许管理员登录
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	form  = LoginForm()
 	if form.validate_on_submit():
-		user = User.query.filter_by(number=form.number.data).first()
+		user = Device.query.filter_by(number=form.number.data).first()
 		if user is not None and user.verify_password(form.password.data):
 			if user.role != Role.query.filter_by(name='Admin').first():
 				flash(u'系统只对管理员开放，请联系管理员获得权限！')
@@ -244,7 +248,7 @@ def internal_server_error(e):
 #加载用户的回调函数
 @login_manager.user_loader
 def load_user(user_id):
-	return User.query.get(int(user_id))
+	return Device.query.get(int(user_id))
 
 '''
 增加命令'python app.py init' 
@@ -252,9 +256,9 @@ def load_user(user_id):
 '''
 @manager.command
 def init():
-	from app import Role, User
+	from app import Role, Device
 	Role.insert_roles()
-	User.generate_admin()
+	Device.generate_admin()
 
 
 if __name__=='__main__':
