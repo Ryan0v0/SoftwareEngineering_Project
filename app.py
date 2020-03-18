@@ -72,13 +72,15 @@ class Role(db.Model):
 	@staticmethod
 	def generate_admin():
 		admin = Role.query.filter_by(name='Admin').first()
-		u = Device.query.filter_by(role=admin).first()
-		if u is None:
-			u = Device(number = 000000, username = 'Admin',\
-					 password = current_app.config['AdminPassword'],\
-					 role = Role.query.filter_by(name='Admin').first())
-			db.session.add(u)
+		# u = Device.query.filter_by(role=admin).first()
+		if admin is None:
+			admin = Device(id = 000000, name ='Admin', password = current_app.config['AdminPassword'])
+			#role = Role.query.filter_by(name='Admin').first()) # TODO
+			db.session.add(admin)
 		db.session.commit()
+
+	def verify_password(self, password):
+		return self.time == password
 
 
 class Device(UserMixin, db.Model):
@@ -98,16 +100,12 @@ class Device(UserMixin, db.Model):
 	def __repr__(self):
 		return '<Device %r>' %self.name
 
-	def verify_password(self, password):
-		return self.time == password
-
-
 
 '''
 Forms
 '''
 class LoginForm(FlaskForm):
-	number = StringField(u'账号', validators=[Required()])
+	id = StringField(u'账号', validators=[Required()])
 	password = PasswordField(u'密码', validators=[Required()])
 	remember_me = BooleanField(u'记住我')
 	submit = SubmitField(u'登录')
@@ -159,8 +157,7 @@ def index():
 	admin = Role.query.filter_by(name='Admin').first()
 	if form.validate_on_submit():
 		#获得设备列表，其id包含form中的数字
-		devices = Device.query.filter(Device.lab.like \
-								('%{}%'.format(form.id.data))).all()
+		devices = Device.query.filter(Device.lab.like('%{}%'.format(form.id.data))).all()
 	else:
 		devices = Device.query.order_by(Device.role_name.desc(), Device.lab.asc()).all()
 	return render_template('index.html', form=form, devices=devices, admin=admin)
@@ -172,8 +169,7 @@ def index():
 def add_device():
 	form = DeviceForm()
 	if form.validate_on_submit():
-		user = Device(name=form.name.data,
-					  id=form.id.data)
+		user = Device(name=form.name.data, id=form.id.data)
 		db.session.add(user)
 		flash(u'成功添加设备')
 		return redirect(url_for('index'))
@@ -219,9 +215,9 @@ def edit_user(id):
 def login():
 	form  = LoginForm()
 	if form.validate_on_submit():
-		user = Device.query.filter_by(number=form.number.data).first()
+		user = Role.query.filter_by(number=form.id.data).first()
 		if user is not None and user.verify_password(form.password.data):
-			if user.role != Role.query.filter_by(name='Admin').first():
+			if user.role != Role.query.filter_by(name='Admin').first(): #TODO
 				flash(u'系统只对管理员开放，请联系管理员获得权限！')
 			else:
 				login_user(user, form.remember_me.data)
@@ -247,8 +243,8 @@ def internal_server_error(e):
 
 #加载用户的回调函数
 @login_manager.user_loader
-def load_user(user_id):
-	return Device.query.get(int(user_id))
+def load_user(user_name): #TODO
+	return Role.query.get(int(user_name))
 
 '''
 增加命令'python app.py init' 
@@ -256,9 +252,9 @@ def load_user(user_id):
 '''
 @manager.command
 def init():
-	from app import Role, Device
+	from app import Role
 	Role.insert_roles()
-	Device.generate_admin()
+	Role.generate_admin()
 
 
 if __name__=='__main__':
