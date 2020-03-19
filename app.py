@@ -22,7 +22,7 @@ Config
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 def make_shell_context():
-	return dict(app=app, db=db, Device=Device, Role=Role)
+	return dict(app=app, db=db, Device=Device, User=User, Role=Role)
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] =\
@@ -47,6 +47,62 @@ login_manager.login_message = u"你需要登录才能访问这个页面."
 '''
 Models
 '''
+
+class Role(db.Model):
+	__tablename__ = 'roles'
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(64), unique=True)
+	users = db.relationship('User', backref='role', lazy='dynamic')
+	devices = db.relationship('Device', backref='role', lazy='dynamic')
+
+	@staticmethod
+	def insert_roles():
+		roles = ('Student', 'Admin')
+		for r in roles:
+			role = Role.query.filter_by(name=r).first()
+			if role is None:
+				role = Role(name=r)
+			db.session.add(role)
+		db.session.commit()
+
+	def __repr__(self):
+		return '<Role %r>' % self.name
+
+
+class User(UserMixin, db.Model):
+	__tablename__ = 'users'
+	id = db.Column(db.Integer, primary_key=True)
+	number = db.Column(db.SmallInteger, unique=True, index=True)
+	username = db.Column(db.String(64), index=True)
+	password = db.Column(db.String(128), default=123456)
+	role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+
+	def __init__(self, **kwargs):
+		super(User, self).__init__(**kwargs)
+		# 新添加的用户，初始其角色为学生。
+		if self.role is None:
+			self.role = Role.query.filter_by(name='Student').first()
+
+	def __repr__(self):
+		return '<User %r>' % self.username
+
+	# 初次运行程序时生成初始管理员的静态方法
+	@staticmethod
+	def generate_admin():
+		admin = Role.query.filter_by(name='Admin').first()
+		u = User.query.filter_by(role=admin).first()
+		if u is None:
+			u = User(number=000000, username='Admin', \
+					 password=current_app.config['AdminPassword'], \
+					 role=Role.query.filter_by(name='Admin').first())
+			db.session.add(u)
+		db.session.commit()
+
+	def verify_password(self, password):
+		return self.password == password
+
+'''
+
 class Role(db.Model):
 	__tablename__ = 'roles'
 	id = db.Column(db.Integer, unique=True)
@@ -82,6 +138,7 @@ class Role(db.Model):
 	def verify_password(self, password):
 		return self.time == password
 
+'''
 
 class Device(UserMixin, db.Model):
 	__tablename__ = 'devices'
@@ -89,13 +146,13 @@ class Device(UserMixin, db.Model):
 	lab = db.Column(db.String(64), unique=True, index=True)
 	name = db.Column(db.String(64), index=True)
 	time = db.Column(db.DateTime, default=datetime.utcnow)
-	role_name = db.Column(db.String(64), db.ForeignKey('roles.name'))
+	role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
 	def __init__(self, **kwargs):
 		super(Device, self).__init__(**kwargs)
-		#新添加的实验设备，初始其购置人为学生。
+		#新添加的实验设备，初始其购置人为管理员。
 		if self.role is None:
-			self.role = Role.query.filter_by(name='Student').first()
+			self.role = Role.query.filter_by(name='Admin').first()
 
 	def __repr__(self):
 		return '<Device %r>' %self.name
@@ -104,8 +161,9 @@ class Device(UserMixin, db.Model):
 '''
 Forms
 '''
+
 class LoginForm(FlaskForm):
-	id = StringField(u'账号', validators=[Required()])
+	number = StringField(u'账号', validators=[Required()])
 	password = PasswordField(u'密码', validators=[Required()])
 	remember_me = BooleanField(u'记住我')
 	submit = SubmitField(u'登录')
@@ -122,7 +180,7 @@ class DeviceForm(FlaskForm):
 	submit = SubmitField(u'添加')
 
 	def validate_number(self, field):
-		if Device.query.filter_by(number=field.data).first():
+		if Device.query.filter_by(id=field.data).first():
 			raise ValidationError(u'此设备已存在，请检查考号！')
 
 '''
@@ -159,7 +217,7 @@ def index():
 		#获得设备列表，其id包含form中的数字
 		devices = Device.query.filter(Device.lab.like('%{}%'.format(form.id.data))).all()
 	else:
-		devices = Device.query.order_by(Device.role_name.desc(), Device.lab.asc()).all()
+		devices = Device.query.order_by(Device.role_id.desc(), Device.lab.asc()).all()
 	return render_template('index.html', form=form, devices=devices, admin=admin)
 
 
@@ -215,9 +273,9 @@ def edit_user(id):
 def login():
 	form  = LoginForm()
 	if form.validate_on_submit():
-		user = Role.query.filter_by(number=form.id.data).first()
+		user = User.query.filter_by(number=form.number.data).first()
 		if user is not None and user.verify_password(form.password.data):
-			if user.role != Role.query.filter_by(name='Admin').first(): #TODO
+			if user.role != Role.query.filter_by(name='Admin').first():
 				flash(u'系统只对管理员开放，请联系管理员获得权限！')
 			else:
 				login_user(user, form.remember_me.data)
@@ -243,8 +301,8 @@ def internal_server_error(e):
 
 #加载用户的回调函数
 @login_manager.user_loader
-def load_user(user_name): #TODO
-	return Role.query.get(int(user_name))
+def load_user(user_id):
+	return User.query.get(int(user_id))
 
 '''
 增加命令'python app.py init' 
@@ -252,9 +310,9 @@ def load_user(user_name): #TODO
 '''
 @manager.command
 def init():
-	from app import Role
+	from app import Role, User
 	Role.insert_roles()
-	Role.generate_admin()
+	User.generate_admin()
 
 
 if __name__=='__main__':

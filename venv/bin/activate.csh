@@ -10,7 +10,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV "/Users/zhaowanru/class/数据库/17373124_17373240_基于Web的考生管理系统/DataBaseDesign-master/venv"
+setenv VIRTUAL_ENV "/Users/zhaowanru/class/大三下/软工/project/LabDevicesLib/venv"
 
 set _OLD_VIRTUAL_PATH="$PATH:q"
 setenv PATH "$VIRTUAL_ENV:q/bin:$PATH:q"

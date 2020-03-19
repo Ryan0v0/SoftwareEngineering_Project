@@ -46,7 +46,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/zhaowanru/class/数据库/17373124_17373240_基于Web的考生管理系统/DataBaseDesign-master/venv"
+VIRTUAL_ENV="/Users/zhaowanru/class/大三下/软工/project/LabDevicesLib/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
