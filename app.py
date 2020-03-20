@@ -57,7 +57,6 @@ class Role(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(64), unique=True)
 	users = db.relationship('User', backref='role', lazy='dynamic')
-	devices = db.relationship('Device', backref='role', lazy='dynamic')
 
 	@staticmethod
 	def insert_roles():
@@ -79,8 +78,9 @@ class User(UserMixin, db.Model):
 	number = db.Column(db.SmallInteger, unique=True, index=True)
 	username = db.Column(db.String(64), unique=True,index=True)
 	# password = db.Column(db.String(128), default=123456)
-	password_hash = db.Column(db.String(128))
+	password_hash = db.Column(db.String(128), unique=True, default=123456)
 	role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+	devices = db.relationship('Device', backref='user', lazy='dynamic')
 
 	def __init__(self, **kwargs):
 		super(User, self).__init__(**kwargs)
@@ -91,25 +91,26 @@ class User(UserMixin, db.Model):
 	def __repr__(self):
 		return '<User %r>' % self.username
 
+	def validate_password(self, password):
+		return check_password_hash(self.password_hash, password)
+
+	def set_password(self, password):
+		self.password_hash = generate_password_hash(password)
+
 	# 初次运行程序时生成初始管理员的静态方法
 	@staticmethod
 	def generate_admin():
 		admin = Role.query.filter_by(name='Admin').first()
 		u = User.query.filter_by(role=admin).first()
 		if u is None:
-			u = User(number=000000, username='Admin', role=Role.query.filter_by(name='Admin').first())
-			u.set_password(current_app.config['AdminPassword'])
+			u = User(number='zhaowrenee@gmail.com', username='Admin', role=Role.query.filter_by(name='Admin').first())
+			u.set_password('666666')
 			db.session.add(u)
 		db.session.commit()
 
-	#def verify_password(self, password):
-	#	return self.password == password
+	def verify_password(self, password):
+		return self.password == password
 
-	def validate_password(self, password):
-		return check_password_hash(self.password_hash, password)
-
-	def set_password(self, password):
-		self.password_hash = generate_password_hash(password)
 
 
 class Device(UserMixin, db.Model):
@@ -118,13 +119,14 @@ class Device(UserMixin, db.Model):
 	lab = db.Column(db.String(64), unique=True, index=True)
 	name = db.Column(db.String(64), index=True)
 	time = db.Column(db.DateTime, default=datetime.utcnow)
-	role_id = db.Column(db.String(64), db.ForeignKey('users.id'))
+	user_id = db.Column(db.String(64), db.ForeignKey('users.id'))
+
 
 	def __init__(self, **kwargs):
 		super(Device, self).__init__(**kwargs)
 		#新添加的实验设备，初始其购置人为管理员。
-		if self.role is None:
-			self.role = Role.query.filter_by(name='Admin').first()
+		if self.user is None:
+			self.user = User.query.filter_by(username='Admin').first()
 
 	def __repr__(self):
 		return '<Device %r>' %self.name
@@ -136,7 +138,7 @@ Forms
 
 class LoginForm(FlaskForm):
 	number = StringField(u'账号', validators=[Required()])
-	password = PasswordField(u'密码', validators=[Required()])
+	password_hash = PasswordField(u'密码', validators=[Required()])
 	remember_me = BooleanField(u'记住我')
 	submit = SubmitField(u'登录')
 
@@ -148,7 +150,7 @@ class SearchForm(FlaskForm):
 
 class DeviceForm(FlaskForm):
 	name = StringField(u'设备名', validators=[Required()])
-	id = IntegerField(u'设备编号', validators=[Required(message=u'请输入数字')])
+	id = IntegerField(u'设备号', validators=[Required(message=u'请输入数字')])
 	submit = SubmitField(u'添加')
 
 	def validate_number(self, field):
@@ -167,7 +169,7 @@ def index():
 		#获得设备列表，其id包含form中的数字
 		devices = Device.query.filter(Device.lab.like('%{}%'.format(form.id.data))).all()
 	else:
-		devices = Device.query.order_by(Device.role_id.desc(), Device.lab.asc()).all()
+		devices = Device.query.order_by(Device.user_id.desc(), Device.lab.asc()).all()
 	return render_template('index.html', form=form, devices=devices, admin=admin)
 
 
@@ -177,8 +179,8 @@ def index():
 def add_device():
 	form = DeviceForm()
 	if form.validate_on_submit():
-		user = Device(name=form.name.data, id=form.id.data)
-		db.session.add(user)
+		device = Device(name=form.name.data, id=form.id.data)
+		db.session.add(device)
 		flash(u'成功添加设备')
 		return redirect(url_for('index'))
 	return render_template('add_user.html', form=form)
@@ -189,7 +191,7 @@ def add_device():
 @login_required
 def remove_device(id):
 	device = Device.query.get_or_404(id)
-	if device.role == Role.query.filter_by(name='Admin').first():
+	if device.user_id == User.query.filter_by(username='Admin').first():
 		flash(u'不能删除管理员添加的设备')
 	else:
 		db.session.delete(device)
@@ -202,7 +204,7 @@ def login():
 	form  = LoginForm()
 	if form.validate_on_submit():
 		user = User.query.filter_by(number=form.number.data).first()
-		if user is not None and user.validate_password(form.password.data): #user.verify_password(form.password.data):
+		if user is not None and user.validate_password(form.password_hash.data): #user.verify_password(form.password.data):
 			if user.role != Role.query.filter_by(name='Admin').first():
 				flash(u'系统只对管理员开放，请联系管理员获得权限！')
 			else:
@@ -236,25 +238,11 @@ def load_user(user_id):
 '''
 fake
 '''
-'''
-def fake_admin():
-    admin = User(name='',
-                 username='lalala',
-                 email='admin@helloflask.com',
-                 bio=fake.sentence(),
-                 website='http://character.com',
-                 confirmed=True)
-    admin.set_password('helloflask')
-    notification = Notification(message='您好，欢迎来到文墨', receiver=admin)
-    db.session.add(notification)
-    db.session.add(admin)
-    db.session.commit()
-'''
 
 def fake_user(count=10):
     for i in range(count):
         user = User(username=fake.name(),
-                    email=fake.email(),
+                	number=fake.email(),
 					role_id=2)
         user.set_password('123456')
         db.session.add(user)
@@ -266,8 +254,7 @@ def fake_user(count=10):
 def fake_device(count=10):
     for i in range(count):
         device = Device(name=fake.name(),
-					role_id=User.query.get(random.randint(1, User.query.count())),
-                    email=fake.email(),
+					user_id=User.query.get(random.randint(1, User.query.count())),
 					time=fake.date_time_this_year(),
 					lab=fake.company())
         db.session.add(device)
@@ -283,6 +270,8 @@ def fake_device(count=10):
 @manager.command
 def init():
 	from app import Role, User
+	db.drop_all()
+	db.create_all()
 	Role.insert_roles()
 	User.generate_admin()
 	fake_user()

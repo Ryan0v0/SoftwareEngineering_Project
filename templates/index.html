@@ -26,10 +26,10 @@
 	<thead>
 		<tr>
 			<th>设备编号</th>
-			<th>实验实名</th>
-			<th>设备名</th>
+			<th>实验室名</th>
+			<th>购置人</th>
             <th>购置时间</th>
-            <th>购置人id</th>
+            <th>购置人权限</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -39,7 +39,7 @@
 		<td>{{ dev.lab }}</td>
         <td>{{ dev.name }}</td>
         <td>{{ dev.time }}</td>
-        <td>{{ dev.role_id }}</td>
+        <td>{{ dev.user_id }}</td>
 		<td>
 			<a class="btn btn-danger btn-sm {% if dev.role==admin %} disabled {% endif %}" href="{{ url_for('remove_device', id=dev.id) }}">删除</a>
 		</td>
