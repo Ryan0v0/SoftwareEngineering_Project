@@ -13,8 +13,12 @@ from wtforms import StringField, PasswordField, SubmitField, SelectField, \
 					BooleanField, IntegerField, ValidationError
 from wtforms.validators import Required, Length, Regexp
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
 
+import random
+from faker import Faker
+fake = Faker('zh_CN')
 
 '''
 Config
@@ -73,8 +77,9 @@ class User(UserMixin, db.Model):
 	__tablename__ = 'users'
 	id = db.Column(db.Integer, primary_key=True)
 	number = db.Column(db.SmallInteger, unique=True, index=True)
-	username = db.Column(db.String(64), index=True)
-	password = db.Column(db.String(128), default=123456)
+	username = db.Column(db.String(64), unique=True,index=True)
+	# password = db.Column(db.String(128), default=123456)
+	password_hash = db.Column(db.String(128))
 	role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
 	def __init__(self, **kwargs):
@@ -92,53 +97,20 @@ class User(UserMixin, db.Model):
 		admin = Role.query.filter_by(name='Admin').first()
 		u = User.query.filter_by(role=admin).first()
 		if u is None:
-			u = User(number=000000, username='Admin', \
-					 password=current_app.config['AdminPassword'], \
-					 role=Role.query.filter_by(name='Admin').first())
+			u = User(number=000000, username='Admin', role=Role.query.filter_by(name='Admin').first())
+			u.set_password(current_app.config['AdminPassword'])
 			db.session.add(u)
 		db.session.commit()
 
-	def verify_password(self, password):
-		return self.password == password
+	#def verify_password(self, password):
+	#	return self.password == password
 
-'''
+	def validate_password(self, password):
+		return check_password_hash(self.password_hash, password)
 
-class Role(db.Model):
-	__tablename__ = 'roles'
-	id = db.Column(db.Integer, unique=True)
-	name = db.Column(db.String(64), primary_key=True)
-	users = db.relationship('Device', backref='role', lazy='dynamic')
-	password = db.Column(db.String(128), default=123456)
+	def set_password(self, password):
+		self.password_hash = generate_password_hash(password)
 
-	@staticmethod
-	def insert_roles():
-		roles = ('Student','Admin')
-		for r in roles:
-			role = Role.query.filter_by(name=r).first()
-			if role is None:
-				role = Role(name=r)
-			db.session.add(role)
-		db.session.commit()
-
-
-	def __repr__(self):
-		return '<Role %r>' %self.name
-
-	#初次运行程序时生成初始管理员的静态方法
-	@staticmethod
-	def generate_admin():
-		admin = Role.query.filter_by(name='Admin').first()
-		# u = Device.query.filter_by(role=admin).first()
-		if admin is None:
-			admin = Device(id = 000000, name ='Admin', password = current_app.config['AdminPassword'])
-			#role = Role.query.filter_by(name='Admin').first()) # TODO
-			db.session.add(admin)
-		db.session.commit()
-
-	def verify_password(self, password):
-		return self.time == password
-
-'''
 
 class Device(UserMixin, db.Model):
 	__tablename__ = 'devices'
@@ -146,7 +118,7 @@ class Device(UserMixin, db.Model):
 	lab = db.Column(db.String(64), unique=True, index=True)
 	name = db.Column(db.String(64), index=True)
 	time = db.Column(db.DateTime, default=datetime.utcnow)
-	role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+	role_id = db.Column(db.String(64), db.ForeignKey('users.id'))
 
 	def __init__(self, **kwargs):
 		super(Device, self).__init__(**kwargs)
@@ -182,28 +154,6 @@ class DeviceForm(FlaskForm):
 	def validate_number(self, field):
 		if Device.query.filter_by(id=field.data).first():
 			raise ValidationError(u'此设备已存在，请检查考号！')
-
-'''
-class EditForm(FlaskForm):
-	username = StringField(u'姓名', validators=[Required()])
-	number = IntegerField(u'考号', validators=[Required(message=u'请输入数字')])
-	password = StringField(u'密码', validators=[Required(), Length(1,64),\
-									Regexp('^[a-zA-Z0-9_.]*$', 0, \
-											u'密码由字母、数字和_.组成')])
-	role = SelectField(u'身份', coerce=int)
-	submit = SubmitField(u'修改')
-
-	def __init__(self, user, *args, **kargs):
-		super(EditForm, self).__init__(*args, **kargs)
-		self.role.choices = [(role.id, role.name)
-							 for role in Role.query.order_by(Role.name).all()]
-		self.user = user
-
-	def validate_number(self, field):
-		if field.data != self.user.number and \
-				Device.query.filter_by(number=field.data).first():
-			raise ValidationError(u'此学生已存在，请检查考号！')
-'''
 
 '''
 views
@@ -246,35 +196,13 @@ def remove_device(id):
 		flash(u'成功删除此设备')
 	return redirect(url_for('index'))
 
-'''
-#修改考生资料
-@app.route('/edit-user/<int:id>', methods=['GET', 'POST'])
-@login_required
-def edit_user(id):
-	user = Device.query.get_or_404(id)
-	form = EditForm(user=user)
-	if form.validate_on_submit():
-		user.username = form.username.data
-		user.number = form.number.data
-		user.password = form.password.data
-		user.role = Role.query.get(form.role.data)
-		db.session.add(user)
-		flash(u'个人信息已更改')
-		return redirect(url_for('index'))
-	form.username.data = user.username
-	form.number.data = user.number
-	form.password.data = user.password
-	form.role.data = user.role_id
-	return render_template('edit_user.html', form=form, user=user)
-'''
-
 #登录，系统只允许管理员登录
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	form  = LoginForm()
 	if form.validate_on_submit():
 		user = User.query.filter_by(number=form.number.data).first()
-		if user is not None and user.verify_password(form.password.data):
+		if user is not None and user.validate_password(form.password.data): #user.verify_password(form.password.data):
 			if user.role != Role.query.filter_by(name='Admin').first():
 				flash(u'系统只对管理员开放，请联系管理员获得权限！')
 			else:
@@ -304,6 +232,50 @@ def internal_server_error(e):
 def load_user(user_id):
 	return User.query.get(int(user_id))
 
+
+'''
+fake
+'''
+'''
+def fake_admin():
+    admin = User(name='',
+                 username='lalala',
+                 email='admin@helloflask.com',
+                 bio=fake.sentence(),
+                 website='http://character.com',
+                 confirmed=True)
+    admin.set_password('helloflask')
+    notification = Notification(message='您好，欢迎来到文墨', receiver=admin)
+    db.session.add(notification)
+    db.session.add(admin)
+    db.session.commit()
+'''
+
+def fake_user(count=10):
+    for i in range(count):
+        user = User(username=fake.name(),
+                    email=fake.email(),
+					role_id=2)
+        user.set_password('123456')
+        db.session.add(user)
+        try:
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+
+def fake_device(count=10):
+    for i in range(count):
+        device = Device(name=fake.name(),
+					role_id=User.query.get(random.randint(1, User.query.count())),
+                    email=fake.email(),
+					time=fake.date_time_this_year(),
+					lab=fake.company())
+        db.session.add(device)
+        try:
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+
 '''
 增加命令'python app.py init' 
 以增加身份与初始管理员帐号
@@ -313,6 +285,9 @@ def init():
 	from app import Role, User
 	Role.insert_roles()
 	User.generate_admin()
+	fake_user()
+	fake_device()
+
 
 
 if __name__=='__main__':
