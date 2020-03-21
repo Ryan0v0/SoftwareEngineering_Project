@@ -27,26 +27,26 @@
 		<tr>
 			<th>设备编号</th>
 			<th>实验室名</th>
-			<th>购置人</th>
+			<th>设备名</th>
             <th>购置时间</th>
-            <th>购置人权限</th>
+            <th>购置人</th>
 			<th></th>
 		</tr>
 	</thead>
 	{% for dev in devices %}
-	<tr {% if dev.role == admin %} class="danger" {% endif %}>
+	<tr {% if dev.user.role == admin %} class="danger" {% endif %}>
 		<td>{{ dev.id }}</td>
 		<td>{{ dev.lab }}</td>
         <td>{{ dev.name }}</td>
         <td>{{ dev.time }}</td>
-        <td>{{ dev.user_id }}</td>
+        <td>{{ dev.user.username }}</td>
 		<td>
-			<a class="btn btn-danger btn-sm {% if dev.role==admin %} disabled {% endif %}" href="{{ url_for('remove_device', id=dev.id) }}">删除</a>
+			<a class="btn btn-danger btn-sm {% if dev.user.role ==admin %} disabled {% endif %}" href="{{ url_for('remove_device', id=dev.id) }}">删除</a>
 		</td>
 	</tr>
 	{% endfor %}
 </table>
 {% else %}
-<p>看来没有符合条件的人</p>
+<p>看来没有符合条件的设备</p>
 {% endif %}
 {% endblock %}

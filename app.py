@@ -150,12 +150,15 @@ class SearchForm(FlaskForm):
 
 class DeviceForm(FlaskForm):
 	name = StringField(u'设备名', validators=[Required()])
-	id = IntegerField(u'设备号', validators=[Required(message=u'请输入数字')])
+	lab = StringField(u'实验室名', validators=[Required()])
+	user_id = IntegerField(u'购置人', validators=[Required(message=u'请输入用户名(邮箱)')])
+	# user_id = IntegerField(u'设备号', validators=[Required(message=u'请输入数字')])
 	submit = SubmitField(u'添加')
-
+	'''
 	def validate_number(self, field):
 		if Device.query.filter_by(id=field.data).first():
 			raise ValidationError(u'此设备已存在，请检查考号！')
+	'''
 
 '''
 views
@@ -174,24 +177,24 @@ def index():
 
 
 #增加新设备
-@app.route('/add-user', methods=['GET', 'POST'])
+@app.route('/add-device', methods=['GET', 'POST'])
 @login_required
 def add_device():
 	form = DeviceForm()
 	if form.validate_on_submit():
-		device = Device(name=form.name.data, id=form.id.data)
+		device = Device(lab=form.lab.data, name=form.name.data, user=User.query.filter_by(id=form.user_id.data).first())
 		db.session.add(device)
 		flash(u'成功添加设备')
 		return redirect(url_for('index'))
-	return render_template('add_user.html', form=form)
+	return render_template('add_device.html', form=form)
 
 
 #移除设备
-@app.route('/remove-user/<int:id>', methods=['GET', 'POST'])
+@app.route('/remove-device/<int:id>', methods=['GET', 'POST'])
 @login_required
 def remove_device(id):
 	device = Device.query.get_or_404(id)
-	if device.user_id == User.query.filter_by(username='Admin').first():
+	if device.user == User.query.filter_by(username='Admin').first():
 		flash(u'不能删除管理员添加的设备')
 	else:
 		db.session.delete(device)
@@ -253,8 +256,8 @@ def fake_user(count=10):
 
 def fake_device(count=10):
     for i in range(count):
-        device = Device(name=fake.name(),
-					user_id=User.query.get(random.randint(1, User.query.count())),
+        device = Device(name=fake.random_element(),
+					user=User.query.get(random.randint(1, User.query.count())),
 					time=fake.date_time_this_year(),
 					lab=fake.company())
         db.session.add(device)
