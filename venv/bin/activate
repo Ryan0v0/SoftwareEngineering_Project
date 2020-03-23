@@ -46,7 +46,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/zhaowanru/class/大三下/软工/project/LabDevicesLib/venv"
+VIRTUAL_ENV="/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

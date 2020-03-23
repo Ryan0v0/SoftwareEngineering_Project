@@ -11,7 +11,7 @@ from flask_login import UserMixin, LoginManager, login_required, \
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectField, \
 					BooleanField, IntegerField, ValidationError
-from wtforms.validators import Required, Length, Regexp
+from wtforms.validators import DataRequired, Required, Length, Regexp
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -137,21 +137,25 @@ Forms
 '''
 
 class LoginForm(FlaskForm):
-	number = StringField(u'账号', validators=[Required()])
-	password_hash = PasswordField(u'密码', validators=[Required()])
+	number = StringField(u'账号', validators=[DataRequired(), Length(1,32)])
+	password_hash = PasswordField(u'密码', validators=[DataRequired(), Length(1,32)])
 	remember_me = BooleanField(u'记住我')
 	submit = SubmitField(u'登录')
 
 
 class SearchForm(FlaskForm):
-	id = IntegerField(u'设备号', validators=[Required(message=u'请输入数字')])
+	name = StringField(u'设备名', validators=[DataRequired()])
 	submit = SubmitField(u'搜索')
 
 
+
 class DeviceForm(FlaskForm):
-	name = StringField(u'设备名', validators=[Required()])
-	lab = StringField(u'实验室名', validators=[Required()])
-	user_id = IntegerField(u'购置人', validators=[Required(message=u'请输入用户名(邮箱)')])
+	name = StringField(u'设备名', validators=[DataRequired(), Length(1,32)])
+	lab = StringField(u'实验室名', validators=[DataRequired(), Length(1,32)])
+	user_name = StringField(u'购置人')
+	#if not User.query.filter_by(username=user_name.data).first():
+	#	raise ValidationError(u'用户不存在')
+	#validate_name(user_name)
 	# user_id = IntegerField(u'设备号', validators=[Required(message=u'请输入数字')])
 	submit = SubmitField(u'添加')
 	'''
@@ -159,7 +163,9 @@ class DeviceForm(FlaskForm):
 		if Device.query.filter_by(id=field.data).first():
 			raise ValidationError(u'此设备已存在，请检查考号！')
 	'''
-
+	def validate_user_name(self, field):
+		if not User.query.filter_by(username=field.data).first():
+			raise ValidationError(u'用户不存在')
 '''
 views
 '''
@@ -170,9 +176,9 @@ def index():
 	admin = Role.query.filter_by(name='Admin').first()
 	if form.validate_on_submit():
 		#获得设备列表，其id包含form中的数字
-		devices = Device.query.filter(Device.lab.like('%{}%'.format(form.id.data))).all()
+		devices = Device.query.filter(Device.name.like('%{}%'.format(form.name.data))).all()
 	else:
-		devices = Device.query.order_by(Device.user_id.desc(), Device.lab.asc()).all()
+		devices = Device.query.order_by(Device.id.asc(), Device.name.desc()).all()
 	return render_template('index.html', form=form, devices=devices, admin=admin)
 
 
@@ -182,7 +188,7 @@ def index():
 def add_device():
 	form = DeviceForm()
 	if form.validate_on_submit():
-		device = Device(lab=form.lab.data, name=form.name.data, user=User.query.filter_by(id=form.user_id.data).first())
+		device = Device(lab=form.lab.data, name=form.name.data, user=User.query.filter_by(username=form.user_name.data).first())
 		db.session.add(device)
 		flash(u'成功添加设备')
 		return redirect(url_for('index'))
@@ -259,7 +265,7 @@ def fake_device(count=10):
         device = Device(name=fake.random_element(),
 					user=User.query.get(random.randint(1, User.query.count())),
 					time=fake.date_time_this_year(),
-					lab=fake.company())
+					lab=fake.company()[:-4]+"实验室")
         db.session.add(device)
         try:
             db.session.commit()

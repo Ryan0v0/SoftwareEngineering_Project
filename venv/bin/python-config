@@ -1,4 +1,4 @@
-#!/Users/zhaowanru/class/大三下/软工/project/LabDevicesLib/venv/bin/python
+#!/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/bin/python
 
 import sys
 import getopt
