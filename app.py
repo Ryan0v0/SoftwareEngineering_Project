@@ -248,6 +248,8 @@ def load_user(user_id):
 fake
 '''
 
+list = [u'联想启天2100', u'方正文祥600', u'DSP实验箱', u'功率变换器', u'双踪示波器', u'联想电脑845E', u'曙光天阔服务器', u'ZigBee开发套件', u'专业VR镜头', u'投影机']
+
 def fake_user(count=10):
     for i in range(count):
         user = User(username=fake.name(),
@@ -262,7 +264,7 @@ def fake_user(count=10):
 
 def fake_device(count=10):
     for i in range(count):
-        device = Device(name=fake.random_element(),
+        device = Device(name=random.choice(list),
 					user=User.query.get(random.randint(1, User.query.count())),
 					time=fake.date_time_this_year(),
 					lab=fake.company()[:-4]+"实验室")
