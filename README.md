@@ -20,11 +20,11 @@
 
 ### 开发环境
 
-Mac OS 
-PyCharm IDE 
-Python3 
-Flask（Web框架） 
-SQLite（数据库）
+* Mac OS 
+* PyCharm IDE 
+* Python3 
+* Flask（Web框架） 
+* SQLite（数据库）
 
 ### 运行方法
 
