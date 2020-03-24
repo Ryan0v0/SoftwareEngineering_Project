@@ -285,8 +285,8 @@ def init():
 	db.create_all()
 	Role.insert_roles()
 	User.generate_admin()
-	fake_user()
-	fake_device()
+	fake_user(10)
+	fake_device(15)
 
 
 
