@@ -1,8 +1,12 @@
-# SoftwareEngineering_Project
-
-### 北航软工个人项目 实验室设备管理系统
+# 实验室设备管理系统 个人作业文档
 
 ###### 17373240 赵婉如
+
+
+
+## 目录
+
+[TOC]
 
 
 
@@ -77,47 +81,57 @@
 
 ## 功能细节
 
-1、活动图
-<img src="/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200405013518204.png" alt="image-20200405013518204" style="zoom:50%;" />
+### 一、UML图
 
-2、用例图
+#### 1、活动图
 
-![image-20200405103612687](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200405103612687.png)
+<img src="https://tva1.sinaimg.cn/large/00831rSTly1gdk3d824x9j30u010477y.jpg" alt="image-20200405013518204" style="zoom: 40%;" />
 
-3、顺序图
+`app.py`中function与` templates`中HTML⽂件对应，展示在⽹⻚页中：
 
-<img src="/Users/zhaowanru/Downloads/用户使用系统顺序图 (1).png" alt="用户使用系统顺序图 (1)" style="zoom:50%;" />
+* index() 通过 SearchForm 实现对⽤户信息的检索和展示，并通过 index.html 
+* add_device() 通过 UserForm 实现对新设备信息的添加，并调⽤ add_device.html 
+* remove_device(id) 通过id删除设备，但不能删除管理员添加的设备
+* login() 通过调⽤ LoginForm 实现登录，并调⽤ login.html ⽹⻚页登录，也是服务器提供的第⼀个页⾯
+* 其余function对应⼀系列错误处理和必要但和数据库⽆关功能 
 
-4、类图
+#### 2、用例图
 
-![类图](/Users/zhaowanru/Downloads/类图.png)
+![image-20200405103612687](https://tva1.sinaimg.cn/large/00831rSTly1gdk3d8vbdgj31cs0u0jxc.jpg)
+
+#### 3、顺序图
+
+<img src="https://tva1.sinaimg.cn/large/00831rSTly1gdk3ddn269j310r0o3ach.jpg" alt="用户使用系统顺序图 (1)" style="zoom:50%;" />
+
+#### 4、类图
+
+
+
+![类图](https://tva1.sinaimg.cn/large/00831rSTly1gdk3dhieb7j31jm0twdic.jpg)
+
+* HTML使⽤Flask-wtf Bootstrap渲染功能，使界⾯更美观
 
 * `app.Role`为⽤户设置的用户或者管理员⻆角⾊类，内部有条件⻆角⾊条件约束 
 
 * `app.User` ⽤户类
-  * 记录⽤户名、密码、id等信息，与数据库的属性产⽣交互 
-* `app.Role`为⽤户设置的用户或者管理员⻆角⾊类，内部有条件⻆角⾊条件约束 
+
+  * 记录⽤户名、密码、id等信息，与数据库的属性进行交互 
+
+* `app.Device` 设备类
+
+  * 记录设备名、实验室、购置人、购置时间等信息，与数据库的属性进行交互
 
 * FlaskForm 信息表 
-  * 四种Form根据不同的操作需求，设定不同的Field
 
+  * 三种Form根据不同的操作需求，设定不同的Field
 
-5、状态图
-![后台管理界面状态图 (1)](/Users/zhaowanru/Downloads/后台管理界面状态图 (1).png)
+    
 
+#### 5、状态图
 
-* `app.py`中function与` templates`中HTML⽂件对应，展示在⽹⻚页中
-  * index() 通过 SearchForm 实现对⽤户信息的检索和展示，并通过 index.html 
-  * add_user() 通过 UserForm 实现对新考⽣信息的添加，并调⽤ add_user.html 
-  * remove_user(id) 通过id删除考⽣，但不能删除管理员
-  * edit_user() 通过调⽤ EditForm 实现考⽣信息的修改，并调⽤ edit_user.html ⽹⻚页修改 
-  * login() 通过调⽤ LoginForm 实现登录，并调⽤ login.html ⽹⻚页登录，也是服务器提供的第⼀个页⾯
-  * 其余function对应⼀系列错误处理和必要但和数据库⽆关功能 
-* HTML使⽤Flask-wtf Bootstrap渲染功能，使界⾯更美观
+![后台管理界面状态图 (https://tva1.sinaimg.cn/large/00831rSTly1gdk3diuj05j31ai0pdwip.jpg)](/Users/zhaowanru/Downloads/后台管理界面状态图 (1).png)
 
-
-
-⼆、数据库基本表的定义
+### ⼆、基本表单的定义
 
 #### 表一：
 
@@ -185,6 +199,7 @@ CREATE TABLE users (
 | -------------- | ----------- | ------------ | --------------- | ---------- | ---- | --------- |
 | 名称           | 类型        | NOT NULL约束 | PRIMARY KEY约束 | UNIQUE约束 | 默认 | 外键      |
 | id             | INTEGER     | √            | √               |            |      |           |
+| device_id             | VARCHAR(64)     |            |               |            |      |           |
 | lab            | VARCHAR(64) |              |                 |            |      |           |
 | name           | VARCHAR(64) |              |                 |            |      |           |
 | password_hash  | DATETIME    |              |                 |            |      |           |
@@ -220,11 +235,69 @@ CREATE TABLE devices (
 
 ## 展示后修改及优化说明
 
-1. 对设备ID进行改进
+#### 1. 对设备ID进行改进
 
-2. 删除设备时
+通常设备编号都有其实际含义，而且通常有使用年限的规定。所以我在展示后对ID进行设计，更加符合实际情况。
+
+id的格式为`购置年份-实验室名称前两字的拼音大写字母缩写-设备编号（三位数补全）`
+
+其中，提取实验室名称的拼音大写字母缩写，我通过利用xpinyin包来完成。
+
+页面中显示的“设备编号”为人为构造的“设备id”，区别于数据库表中自动生成的id。
+
+#### 2. 删除设备时进行安全性提示
+
+因为增加了删除设备这一附加功能，而设备删除是一个具有安全隐患的操作。为了避免发生误操作的情况，在点击“删除”按钮后系统会提示“确定要删除吗？”，此时只有点击”确定“时才会执行删除操作。
 
 
 
-## 效果截图
+## 整体效果及操作流程
+
+##### 1. 登录页面：
+
+![image-20200406201227591](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200406201227591.png)
+
+###### 如果输入错误密码：
+
+![image-20200406230722637](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200406230722637.png)
+
+###### 如果输入非管理员账号：
+
+![image-20200406230651226](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200406230651226.png)
+
+##### 2. 查看设备列表：
+
+![image-20200406201729178](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200406201729178.png)
+
+为了批量生成数据，使用python中的faker包来生成不同类型和格式的随机数据来模拟真实情形
+
+其中，设定系统的管理员拥有顶级权限，即可以管理设备购置记录，并且我这里附加了一个功能：其本身购置的设备记录用红色背景标出，表明其重要性。
+
+##### 3. 增加设备：
+
+![image-20200406202054034](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200406202054034.png)
+
+这里对输入数据进行合法性验证：
+
+* 设备名不能为空/长度超出32个字符
+
+* 购置人必须是数据库中的用户，这里主要是为了确保我们拥有购置人的详细信息（比如说邮箱等），否则我们无法确认购置人的身份、无法联系到他。
+
+![image-20200406202126753](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200406202126753.png)
+
+##### 4. 删除设备：
+
+![image-20200406201835473](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200406201835473.png)
+
+这里考虑了可能有设备废弃或者是转让，需要删除设备的情况。
+
+拥有顶级权限的管理员本人购置的设备无法删除。
+
+##### 5. 关键词搜索：
+
+![image-20200406201938874](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200406201938874.png)
+
+##### 6. 注销：
+
+完成操作后点击注销，即可退出登录，此时返回登录页面，因为之前选择了记住密码，下次可直接登录。
 
