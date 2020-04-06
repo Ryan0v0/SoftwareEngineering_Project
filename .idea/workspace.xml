@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ee12859b-001c-4802-bdb4-f83fc3c14461" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/data.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/edit_user.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,35 +38,21 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+            <state relative-caret-position="480">
+              <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/edit_user.html">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="438">
+              <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -73,10 +64,19 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="680">
-                <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+              <first_editor relative-caret-position="-5">
+                <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -84,11 +84,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="120" column="46" selection-start-line="120" selection-start-column="42" selection-end-line="120" selection-end-column="46" />
+            <state relative-caret-position="358">
+              <caret line="315" column="11" lean-forward="true" selection-start-line="315" selection-start-column="11" selection-end-line="315" selection-end-column="11" />
               <folding>
                 <element signature="e#14#23#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -122,11 +131,15 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>role_name</find>
-      <find>load_user</find>
-      <find>init</find>
       <find>LoginForm</find>
       <find>number</find>
       <find>.query.filter_by</find>
@@ -154,6 +167,9 @@
       <find>user_name</find>
       <find>data</find>
       <find>date</find>
+      <find>删除</find>
+      <find>设备编号</find>
+      <find>dev.id</find>
     </findStrings>
     <replaceStrings>
       <replace>Device</replace>
@@ -167,20 +183,22 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/templates/login.html" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/templates/404.html" />
-        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/templates/base.html" />
+        <option value="$PROJECT_DIR$/pinyin.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="40" />
     <option name="y" value="23" />
-    <option name="width" value="1680" />
-    <option name="height" value="1007" />
+    <option name="width" value="1727" />
+    <option name="height" value="1027" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -188,23 +206,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="LabDevicesLib" type="b2602c69:ProjectViewProjectNode" />
               <item name="LabDevicesLib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LabDevicesLib" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LabDevicesLib" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LabDevicesLib" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LabDevicesLib" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LabDevicesLib" type="b2602c69:ProjectViewProjectNode" />
@@ -219,6 +226,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -293,6 +301,9 @@
       <workItem from="1584964802545" duration="1717000" />
       <workItem from="1584967425326" duration="11433000" />
       <workItem from="1585274382609" duration="1334000" />
+      <workItem from="1586015164799" duration="739000" />
+      <workItem from="1586054270211" duration="350000" />
+      <workItem from="1586138203106" duration="8221000" />
     </task>
     <task id="LOCAL-00001" summary="change tables">
       <created>1584539446480</created>
@@ -368,7 +379,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63255000" />
+    <option name="totallyTimeSpent" value="72565000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -380,11 +391,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="1007" extended-state="0" />
+    <frame x="40" y="23" width="1727" height="1027" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.769821" visible="true" weight="0.15140416" />
-      <window_info id="Structure" order="1" sideWeight="0.23017903" side_tool="true" visible="true" weight="0.15140416" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.765625" visible="true" weight="0.22255193" />
+      <window_info id="Structure" order="1" sideWeight="0.234375" side_tool="true" visible="true" weight="0.22255193" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
@@ -397,13 +408,13 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32941177" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.32941177" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.1453552" />
-      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.17860962" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32941177" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.01831502" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.017804155" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -471,13 +482,6 @@
     <entry file="file://$PROJECT_DIR$/static/index_new.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/bootstrap.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -512,49 +516,244 @@
     <entry file="file://$PROJECT_DIR$/static/index1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+    <entry file="file://$PROJECT_DIR$/templates/edit_user.html" />
+    <entry file="uml://JavaScript-modules-diagram//Users/zhaowanru/class/大三下/软工/new/LabDevicesLib">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$</OriginalElement>
+          <nodes>
+            <node x="953.0" y="743.0">$PROJECT_DIR$/templates/base.html</node>
+            <node x="232.0" y="651.0">$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html</node>
+            <node x="127.0" y="1123.0">$PROJECT_DIR$/templates/login.html</node>
+            <node x="209.0" y="108.0">$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#affix.js#456;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#alert.js#150;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#button.js#179;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#carousel.js#209;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#collapse.js#241;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#dropdown.js#273;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#modal.js#305;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#popover.js#365;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#scrollspy.js#396;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tab.js#429;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tooltip.js#334;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#transition.js#116;</node>
+            <node x="46.0" y="422.0">affix.js</node>
+            <node x="402.0" y="378.0">alert.js</node>
+            <node x="0.0" y="237.0">button.js</node>
+            <node x="320.0" y="449.0">carousel.js</node>
+            <node x="2.0" y="95.0">collapse.js</node>
+            <node x="225.0" y="0.0">dropdown.js</node>
+            <node x="430.0" y="255.0">modal.js</node>
+            <node x="92.0" y="23.0">popover.js</node>
+            <node x="424.0" y="131.0">scrollspy.js</node>
+            <node x="21.0" y="343.0">tab.js</node>
+            <node x="366.0" y="29.0">tooltip.js</node>
+            <node x="163.0" y="467.0">transition.js</node>
+            <node x="0.0" y="924.0">{{ url_for('static', filename='cpu.jpeg') }}</node>
+            <node x="814.0" y="542.0">{{ url_for('static', filename='styles.css') }}</node>
+            <node x="0.0" y="546.0">{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}</node>
+            <node x="325.0" y="542.0">{{bootstrap_find_resource('jquery.js', cdn='jquery')}}</node>
+            <node x="225.0" y="849.0">{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#affix.js#456;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#alert.js#150;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#button.js#179;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#carousel.js#209;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#collapse.js#241;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#dropdown.js#273;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#modal.js#305;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#popover.js#365;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#scrollspy.js#396;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tab.js#429;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tooltip.js#334;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#transition.js#116;" target="carousel.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/templates/base.html" target="{{ url_for('static', filename='styles.css') }}">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#affix.js#456;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#alert.js#150;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#button.js#179;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#carousel.js#209;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#collapse.js#241;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#dropdown.js#273;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#modal.js#305;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#popover.js#365;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#scrollspy.js#396;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tab.js#429;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tooltip.js#334;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#transition.js#116;" target="collapse.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#affix.js#456;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#alert.js#150;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#button.js#179;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#carousel.js#209;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#collapse.js#241;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#dropdown.js#273;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#modal.js#305;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#popover.js#365;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#scrollspy.js#396;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tab.js#429;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tooltip.js#334;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#transition.js#116;" target="button.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#affix.js#456;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#alert.js#150;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#button.js#179;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#carousel.js#209;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#collapse.js#241;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#dropdown.js#273;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#modal.js#305;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#popover.js#365;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#scrollspy.js#396;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tab.js#429;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tooltip.js#334;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#transition.js#116;" target="tooltip.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html" target="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#affix.js#456;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#alert.js#150;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#button.js#179;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#carousel.js#209;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#collapse.js#241;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#dropdown.js#273;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#modal.js#305;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#popover.js#365;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#scrollspy.js#396;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tab.js#429;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tooltip.js#334;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#transition.js#116;" target="popover.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#affix.js#456;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#alert.js#150;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#button.js#179;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#carousel.js#209;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#collapse.js#241;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#dropdown.js#273;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#modal.js#305;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#popover.js#365;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#scrollspy.js#396;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tab.js#429;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tooltip.js#334;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#transition.js#116;" target="dropdown.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html" target="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#affix.js#456;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#alert.js#150;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#button.js#179;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#carousel.js#209;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#collapse.js#241;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#dropdown.js#273;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#modal.js#305;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#popover.js#365;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#scrollspy.js#396;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tab.js#429;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tooltip.js#334;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#transition.js#116;" target="tab.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#affix.js#456;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#alert.js#150;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#button.js#179;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#carousel.js#209;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#collapse.js#241;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#dropdown.js#273;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#modal.js#305;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#popover.js#365;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#scrollspy.js#396;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tab.js#429;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tooltip.js#334;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#transition.js#116;" target="modal.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#affix.js#456;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#alert.js#150;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#button.js#179;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#carousel.js#209;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#collapse.js#241;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#dropdown.js#273;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#modal.js#305;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#popover.js#365;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#scrollspy.js#396;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tab.js#429;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tooltip.js#334;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#transition.js#116;" target="transition.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html" target="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/templates/login.html" target="{{ url_for('static', filename='cpu.jpeg') }}">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#affix.js#456;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#alert.js#150;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#button.js#179;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#carousel.js#209;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#collapse.js#241;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#dropdown.js#273;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#modal.js#305;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#popover.js#365;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#scrollspy.js#396;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tab.js#429;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tooltip.js#334;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#transition.js#116;" target="scrollspy.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#affix.js#456;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#alert.js#150;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#button.js#179;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#carousel.js#209;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#collapse.js#241;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#dropdown.js#273;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#modal.js#305;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#popover.js#365;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#scrollspy.js#396;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tab.js#429;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tooltip.js#334;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#transition.js#116;" target="alert.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#affix.js#456;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#alert.js#150;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#button.js#179;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#carousel.js#209;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#collapse.js#241;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#dropdown.js#273;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#modal.js#305;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#popover.js#365;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#scrollspy.js#396;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tab.js#429;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#tooltip.js#334;/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/venv/lib/python3.7/site-packages/flask_bootstrap/static/js/npm.js#transition.js#116;" target="affix.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.6206308610400681" x="-110.0" y="377.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>Details</VISIBILITY>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+    <entry file="uml://AlchemyModelDependency/#DataBaseDesign-master">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>AlchemyModelDependency</ID>
+          <OriginalElement>#DataBaseDesign-master</OriginalElement>
+          <nodes>
+            <node x="0.0" y="0.0">app.Device</node>
+            <node x="8.0" y="80.0">app.User</node>
+            <node x="8.0" y="160.0">app.Role</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="app.Role" target="app.User">
+              <point x="0.0" y="-15.0" />
+              <point x="0.0" y="15.0" />
+            </edge>
+            <edge source="app.User" target="app.Device">
+              <point x="0.0" y="-15.0" />
+              <point x="0.0" y="15.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.4185689293460684" x="-224.0" y="39.0" />
+          <SelectedNodes>
+            <node>app.Role</node>
+          </SelectedNodes>
+          <Categories />
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+    <entry file="uml://Python/#/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/app.py">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>Python</ID>
+          <OriginalElement>#/Users/zhaowanru/class/大三下/软工/new/LabDevicesLib/app.py</OriginalElement>
+          <nodes>
+            <node x="31.0" y="270.0">app.User</node>
+            <node x="218.25" y="292.0">app.Device</node>
+            <node x="359.25" y="325.0">app.Role</node>
+            <node x="662.25" y="347.0">app.SearchForm</node>
+            <node x="824.25" y="325.0">app.LoginForm</node>
+            <node x="274.0" y="190.0">Model</node>
+            <node x="328.0" y="0.0">object</node>
+            <node x="500.25" y="325.0">app.DeviceForm</node>
+            <node x="0.0" y="190.0">flask_login.mixins.UserMixin</node>
+            <node x="682.25" y="190.0">FlaskForm</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="app.User" target="flask_login.mixins.UserMixin">
+              <point x="-32.5" y="-114.0" />
+              <point x="-63.5" y="15.0" />
+            </edge>
+            <edge source="FlaskForm" target="object">
+              <point x="0.0" y="-15.0" />
+              <point x="733.25" y="160.0" />
+              <point x="418.125" y="160.0" />
+              <point x="38.625" y="70.0" />
+            </edge>
+            <edge source="app.LoginForm" target="FlaskForm">
+              <point x="0.0" y="-59.0" />
+              <point x="891.25" y="250.0" />
+              <point x="767.25" y="250.0" />
+              <point x="34.0" y="15.0" />
+            </edge>
+            <edge source="app.Device" target="Model">
+              <point x="30.25" y="-92.0" />
+              <point x="0.0" y="15.0" />
+            </edge>
+            <edge source="app.Role" target="Model">
+              <point x="-30.25" y="-59.0" />
+              <point x="389.5" y="250.0" />
+              <point x="332.3333333333333" y="250.0" />
+              <point x="23.333333333333314" y="15.0" />
+            </edge>
+            <edge source="Model" target="object">
+              <point x="0.0" y="-15.0" />
+              <point x="309.0" y="170.0" />
+              <point x="366.625" y="170.0" />
+              <point x="-12.875" y="70.0" />
+            </edge>
+            <edge source="flask_login.mixins.UserMixin" target="object">
+              <point x="0.0" y="-15.0" />
+              <point x="127.0" y="160.0" />
+              <point x="340.875" y="160.0" />
+              <point x="-38.625" y="70.0" />
+            </edge>
+            <edge source="app.User" target="Model">
+              <point x="32.5" y="-114.0" />
+              <point x="128.5" y="250.0" />
+              <point x="285.6666666666667" y="250.0" />
+              <point x="-23.333333333333314" y="15.0" />
+            </edge>
+            <edge source="app.Role" target="object">
+              <point x="30.25" y="-59.0" />
+              <point x="450.0" y="170.0" />
+              <point x="392.375" y="170.0" />
+              <point x="12.875" y="70.0" />
+            </edge>
+            <edge source="app.Device" target="flask_login.mixins.UserMixin">
+              <point x="-30.25" y="-92.0" />
+              <point x="248.5" y="240.0" />
+              <point x="190.5" y="240.0" />
+              <point x="63.5" y="15.0" />
+            </edge>
+            <edge source="app.DeviceForm" target="FlaskForm">
+              <point x="0.0" y="-59.0" />
+              <point x="571.25" y="250.0" />
+              <point x="699.25" y="250.0" />
+              <point x="-34.0" y="15.0" />
+            </edge>
+            <edge source="app.SearchForm" target="FlaskForm">
+              <point x="0.0" y="-37.0" />
+              <point x="0.0" y="15.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.8238029992583561" x="537.0" y="695.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Inner Classes</Category>
+            <Category>Fields</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/edit_user.html">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/static/index0.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="680">
-            <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/add_device.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/500.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -570,10 +769,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/add_device.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pinyin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="880">
+          <caret line="44" column="28" lean-forward="true" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-5">
+            <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="120" column="46" selection-start-line="120" selection-start-column="42" selection-end-line="120" selection-end-column="46" />
+        <state relative-caret-position="358">
+          <caret line="315" column="11" lean-forward="true" selection-start-line="315" selection-start-column="11" selection-end-line="315" selection-end-column="11" />
           <folding>
             <element signature="e#14#23#0" expanded="true" />
           </folding>

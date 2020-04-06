@@ -35,13 +35,13 @@
 	</thead>
 	{% for dev in devices %}
 	<tr {% if dev.user.role == admin %} class="danger" {% endif %}>
-		<td>{{ dev.id }}</td>
+		<td>{{ dev.device_id }}</td>
 		<td>{{ dev.lab }}</td>
         <td>{{ dev.name }}</td>
         <td>{{ dev.time }}</td>
         <td>{{ dev.user.username }}</td>
 		<td>
-			<a class="btn btn-danger btn-sm {% if dev.user.role ==admin %} disabled {% endif %}" href="{{ url_for('remove_device', id=dev.id) }}">删除</a>
+			<a class="btn btn-danger btn-sm {% if dev.user.role ==admin %} disabled {% endif %}" href="{{ url_for('remove_device', id=dev.id) }}" onclick="return confirm('确定要删除吗？');">删除</a>
 		</td>
 	</tr>
 	{% endfor %}
