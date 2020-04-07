@@ -255,19 +255,19 @@ id的格式为`购置年份-实验室名称前两字的拼音大写字母缩写-
 
 ##### 1. 登录页面：
 
-![image-20200406201227591](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200406201227591.png)
+![image-20200406201227591](https://tva1.sinaimg.cn/large/00831rSTly1gdlly5cozmj30zo0me4ej.jpg)
 
 ###### 如果输入错误密码：
 
-![image-20200406230722637](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200406230722637.png)
+![image-20200406230722637](https://tva1.sinaimg.cn/large/00831rSTly1gdlly48yihj31jz0u04qq.jpg)
 
 ###### 如果输入非管理员账号：
 
-![image-20200406230651226](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200406230651226.png)
+![image-20200406230651226](https://tva1.sinaimg.cn/large/00831rSTly1gdlly2iszoj31jj0u04qq.jpg)
 
 ##### 2. 查看设备列表：
 
-![image-20200406201729178](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200406201729178.png)
+![image-20200406201729178](https://tva1.sinaimg.cn/large/00831rSTly1gdllxyj3zwj31hi0u0gxl.jpg)
 
 为了批量生成数据，使用python中的faker包来生成不同类型和格式的随机数据来模拟真实情形
 
@@ -275,7 +275,7 @@ id的格式为`购置年份-实验室名称前两字的拼音大写字母缩写-
 
 ##### 3. 增加设备：
 
-![image-20200406202054034](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200406202054034.png)
+![image-20200406202054034](https://tva1.sinaimg.cn/large/00831rSTly1gdllxwgtrcj31w20u0wht.jpg)
 
 这里对输入数据进行合法性验证：
 
@@ -283,11 +283,11 @@ id的格式为`购置年份-实验室名称前两字的拼音大写字母缩写-
 
 * 购置人必须是数据库中的用户，这里主要是为了确保我们拥有购置人的详细信息（比如说邮箱等），否则我们无法确认购置人的身份、无法联系到他。
 
-![image-20200406202126753](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200406202126753.png)
+![image-20200406202126753](https://tva1.sinaimg.cn/large/00831rSTly1gdllxuakdwj31i80u0ds1.jpg)
 
 ##### 4. 删除设备：
 
-![image-20200406201835473](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200406201835473.png)
+![image-20200406201835473](https://tva1.sinaimg.cn/large/00831rSTly1gdllxsykdpj31n70u0n9i.jpg)
 
 这里考虑了可能有设备废弃或者是转让，需要删除设备的情况。
 
@@ -295,7 +295,7 @@ id的格式为`购置年份-实验室名称前两字的拼音大写字母缩写-
 
 ##### 5. 关键词搜索：
 
-![image-20200406201938874](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200406201938874.png)
+![image-20200406201938874](https://tva1.sinaimg.cn/large/00831rSTly1gdllxr1vhjj32ic0ngtbs.jpg)
 
 ##### 6. 注销：
 
